@@ -1,0 +1,5 @@
+4 4
+$\small\mathit{true}$ $\small\mathit{false}$ $\small\mathit{unknown}$
+$\small\mathrm{and}$ $small\mathit{unknown}$ $\small\mathit{false}$ $\small\mathit{unknown}$ E
+$\small\mathrm{or}$ $\small\mathit{true}$ $small\mathit{unknown}$ $\small\mathit{unknown}$ E
+$\small\mathrm{not}$ $-$ $-$ $small\mathit{unknown}$ E
