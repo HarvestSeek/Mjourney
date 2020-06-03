@@ -79,6 +79,12 @@ blockquote.ktb1 {
 	margin-bottom: 8px;
 }
 
+.ilmath2 {
+	margin-left:50px;
+	margin-top: -4px;
+	margin-bottom: 8px;
+}
+
 .waveLine {
 	text-decoration-line: underline; 
 	text-decoration-style: wavy;
