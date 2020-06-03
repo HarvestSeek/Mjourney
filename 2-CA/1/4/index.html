@@ -546,6 +546,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    (3). 对偶形式
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -708,6 +715,13 @@
           <li class="md-nav__item">
   <a href="#2-mathrmkarush-mathrmkuhn-mathrmtucker" class="md-nav__link">
     (2). $\mathrm{Karush}$-$\mathrm{Kuhn}$-$\mathrm{Tucker}$ 条件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    (3). 对偶形式
   </a>
   
 </li>
@@ -909,6 +923,35 @@ $</span>
 \end{cases}
 $</div>
 
+<h4 id="3">(3). 对偶形式</h4>
+<p>记 (2). 中得到的结论为原问题 (<mag>primal</mag>)，原问题的局限性：
+<ul style="margin-top:-15px;margin-bottom:10px;line-height:30px;">
+<li style="margin:1px 26px;">约束太多: 共 $m+n$ 个约束</li>
+<li style="margin:1px 26px;">$f(\bm{x})$ 的凹凸性不明确，无法应用凸优化的方法</li>
+</ul>
+因此，我们寻求一种对偶 (<mag>dual</mag>) 形式，它只有一个约束，且原函数一定是凹的，下面给出推导.<br><br>
+为原问题构造广义拉格朗日函数: $\displaystyle L(\bm{x},\bm{\lambda},\bm{\mu})=f(\bm{x})+\sum_i^m\lambda_ig_i(\bm{x})+\sum_j^n\mu_jh_j(\bm{x})$<br>
+定义 
+$\displaystyle 
+\theta(\bm{x})=\max_{\enspace\bm{\lambda,\mu}\enspace}L(\bm{x},\bm{\lambda},\bm{\mu})=
+\begin{cases}\displaystyle
+f(\bm{x}) &amp;\mathsf{if}\ \bm{x}\ \mathsf{satisfies\ primal\ constraints} \\
+\infty &amp;\mathsf{otherwise.}
+\end{cases} \enspace(\mu_j\geq 0)
+$<br>
+因此 $\displaystyle \min f(\bm{x})\ \Longleftrightarrow\ \min\ \theta(\bm{x})\ \Longleftrightarrow\ \min_{\bm{x}} \max_{\bm{\lambda,\mu}:\ \bm{\mu}\geq 0} L(\bm{x},\bm{\lambda},\bm{\mu})$，它的解记为 $p^*$<br>
+由此引出原问题的对偶形式: 
+$\displaystyle \max_{\bm{\lambda},\bm{\mu}}\ \theta'(\bm{\lambda},\bm{\mu})=\max_{\bm{\lambda},\bm{\mu}}\ \min_{\bm{x}}\ L(\bm{x},\bm{\lambda},\bm{\mu})$，它有一个重要性质:
+<blockquote class="ktb1"><div class="ruler">
+   <div style="padding-left:10px">
+    $\displaystyle\forall\mu\geq 0\ \Longrightarrow\ \theta'(\bm{\lambda},\bm{\mu})\leq p^ * $，即: 对偶形式的最优解是原最优解的下界</div>
+</div></blockquote>
+<blockquote style="margin-left:0px;margin-top:-15px;">
+[证]： <br>
+假设 $\bm{\hat{x}}$ 是原问题的一个可行解，则 $L(\bm{\hat{x}},\bm{\lambda},\bm{\mu})=f(\bm{\hat{x}})+\sum\lambda g_i(\bm{\hat{x}})+\sum\mu h_i(\bm{\hat{x}})\leq f(\bm{\hat{x}})$<br>
+同时 $\theta'(\bm{\lambda},\bm{\mu})=\min L$，$p^ * =\min f(\bm{x})$，故 $\theta'(\bm{\lambda},\bm{\mu})\leq L\leq p^ * $
+</blockquote></p>
+<p>如果原函数 $f$ 是凸的，且满足 <mag>KKT</mag> 条件，那么拉格朗日函数就满足强对偶性，即对偶函数的最优解等于 $p^ * $，对偶问题也就等价于原问题。</p>
 <p></font></p>
                 
               
