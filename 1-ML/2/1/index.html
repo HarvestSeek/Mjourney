@@ -411,6 +411,74 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    (3). 对偶问题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    2. 核技巧
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 核技巧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    (1). 基本思想
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    (2). 正定核判定
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-svm" class="md-nav__link">
+    3. 软间隔 SVM
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 软间隔 SVM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    (1). 基本问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    (2). 对偶问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    (3). 损失函数
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -658,6 +726,74 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    (3). 对偶问题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    2. 核技巧
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 核技巧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    (1). 基本思想
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    (2). 正定核判定
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-svm" class="md-nav__link">
+    3. 软间隔 SVM
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 软间隔 SVM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    (1). 基本问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    (2). 对偶问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    (3). 损失函数
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -704,9 +840,10 @@
 <ul style="margin-top:-15px;margin-bottom:10px;line-height:30px;">
 <li style="margin:1px 26px;">如何衡量被样本分开的程度，即分类器的效果</li>
 <li style="margin:1px 26px;">如何找到这样的超平面</li>
-</ul></p>
+</ul>
+<div style="height:10px"></div></p>
 <h4 id="2">(2). 基本型</h4>
-<p>若超平面可以正确分开正负样本，意味着对于任意的样本 $(\bm{x_i}, y_i)$</p>
+<p>若超平面可正确分开正负样本，意味着任意样本 $(\bm{x_i}, y_i)$ 到超平面的距离 $\dfrac{|\bm{w^\mathrm{T}}\bm{x_i}+b|}{||\bm{w}||}&gt;0$，即</p>
 <div class="ilmath2">
 $
 \displaystyle
@@ -714,20 +851,21 @@ $
 \bm{w^\mathrm{T}}\bm{x_i}+b > 0 & y_i=+1 \\
 \bm{w^\mathrm{T}}\bm{x_i}+b < 0 & y_i=-1
 \end{cases}
-\Longleftrightarrow
+\enspace \Longleftrightarrow \enspace
 \gamma_i=y_i\frac{\bm{w^\mathrm{T}}\bm{x_i}+b}{||\bm{w}||}>0
 $
+<span style="float:right">$(1.1)$</span>
 </div>
 
-<p>满足条件的超平面有无数多个，从中选出效果最好的，使得所有样本中最小的几何间隔 $\gamma_i$ 最大</p>
-<div class="ilmath2">
+<p>满足条件的超平面有无数多个，所有样本中最小的几何间隔 $\gamma_i$ 越大，效果越好</p>
+<div class="ilmath2" style="margin-left:150px">
 $
 \displaystyle
 \underset{\bm{w}, b}{\max}\quad \underset{\bm{x_i}}{\min}\quad y_i\frac{\bm{w^\mathrm{T}}\bm{x_i}+b}{||\bm{w}||}
 $
 </div>
 
-<p>求解上述最优化问题时，不同超平面对应的最小几何间隔点 $(\bm{x'},y')$ 不同，但分子 $y'(\bm{w^\mathrm{T}}\bm{x'}+b)&gt;0$ 是恒成立的，因此可以通过等倍缩放超平面的参数 $\bm{w}, b$，使得 $y'(\bm{w^\mathrm{T}}\bm{x'}+b)=1$ 恒成立<br>
+<p>求解上述最优化问题时，不同超平面对应的最小几何间隔点 $(\bm{x'},y')$ 不同，很难直接求解。但分子 $y'(\bm{w^\mathrm{T}}\bm{x'}+b)&gt;0$ 恒成立，因此可以等倍缩放超平面的参数 $\bm{w}, b$，使 $y'(\bm{w^\mathrm{T}}\bm{x'}+b)=1$ 恒成立<br>
 此时约束条件转化为</p>
 <div class="ilmath2">
 $
@@ -736,20 +874,199 @@ $
 \bm{w^\mathrm{T}}\bm{x_i}+b \geq +1 & y_i=+1 \\
 \bm{w^\mathrm{T}}\bm{x_i}+b \leq -1 & y_i=-1
 \end{cases}
-\Longleftrightarrow
+\enspace \Longleftrightarrow \enspace
 \hat{\gamma_i}=y_i(\bm{w^\mathrm{T}}\bm{x_i}+b)\geq 1
 $
+<span style="float:right">$(1.2)$</span>
 </div>
 
+<p><img src="../img/trans.png" height=200 style="margin-left:150px"></p>
 <p>原问题转化为</p>
 <div class="ilmath2">
 $
 \displaystyle
 \underset{\bm{w}, b}{\max}\enspace \frac{2}{||\bm{w}||}\enspace\Longrightarrow\enspace \underset{\bm{w}, b}{\min}\enspace \frac{1}{2}||\bm{w}||^2,\quad\mathrm{s.t.}\enspace y_i(\bm{w^\mathrm{T}}\bm{x_i}+b)\geq 1,\quad i=1,2,...,m
 $
+<span style="float:right">$(1.3)$</span>
 </div>
 
-<p>此即为 <cy>SVM</cy> 的标准数学形式</p>
+<p>此即为 <cy>SVM</cy> 的标准数学形式，它是一个凸二次规划问题</p>
+<blockquote class="ktb1"><div class="ruler">
+   <div>
+    <b>定义: </b>函数间隔 (<mag>functional margin</mag>): $\hat{\gamma_i}=y_i(\bm{w^\mathrm{T}}\bm{x_i}+b)$，即式 $(1.2)$<br>
+<span style="line-height:60px">几何间隔 (<mag>geometry margin</mag>): $\ \displaystyle\gamma_i=y_i\frac{\bm{w^\mathrm{T}}\bm{x_i}+b}{||\bm{w}||}$，即式 $(1.1)$</span><br>
+几何间隔不随 $\bm{w}、b$ 的等比例改变而改变，相当于 <mag>normalize</mag> 的函数间隔
+</div></blockquote>
+
+<div style="height:10px"></div>
+
+<h4 id="3">(3). 对偶问题</h4>
+<p>该问题的拉格朗日函数: <br>&emsp;&emsp;&emsp;&emsp;
+<span style="line-height:80px">$
+\displaystyle
+L(\bm{w},b,\bm{\alpha})=\frac{1}{2}||\bm{w}||^2+\sum_{i=1}^m\alpha_i(1-y_i(\bm{w}^\mathrm{T}\bm{x_i}+b))
+$</span><br>
+为构造对偶形式，分别对 $\bm{w}、b$ 求偏导，令之为零，得:<br>&emsp;&emsp;&emsp;&emsp;
+<span style="line-height:80px">$\displaystyle
+\bm{w}=\sum_{i=1}^m\alpha_iy_i\bm{x_i},\qquad
+0=\sum_{i=1}^m\alpha_iy_i
+$</span><br>
+代入 $L$，消去 $\bm{w}、b$，得到对偶形式<br>&emsp;&emsp;&emsp;&emsp;
+<span style="line-height:80px">$\displaystyle
+\max_\alpha \ \ -\frac{1}{2}\sum_{i=1}^m\sum_{j=1}^m\alpha_i\alpha_jy_iy_j\bm{x_i^\mathrm{T}}\bm{x_j}+\sum_{i=1}^m\alpha_i,\quad\mathrm{s.t.}\enspace \alpha_i\geq 0,\enspace \sum\alpha_iy_i=0
+$
+<span style="float:right">$(1.4)$</span>
+</span>
+<br>
+解出 $\alpha$ 后，代回 $\bm{w}$ 和 $b$，即可得到最终的模型:<br>&emsp;&emsp;&emsp;&emsp;
+<span style="line-height:80px">$\displaystyle
+f(\bm{x})=\bm{w}^\mathrm{T}\bm{x}+b=\sum_{i=1}^m\alpha_iy_i\bm{x_i^\mathrm{T}}\bm{x}+b
+$
+<span style="float:right">$(1.5)$</span>
+</span><br>
+由于原问题有不等式约束，上述过程需满足 <mag>KKT</mag> 条件，要求<br>&emsp;&emsp;&emsp;&emsp;
+<span style="line-height:50px">$\displaystyle
+\alpha_i\geq 0,\quad y_if(\bm{x_i})-1\geq 0,\quad \alpha_i(y_if(\bm{x_i})-1)=0
+$</span><br>
+对于每个样本 $(\bm{x_i},y_i)$，考虑 <mag>KKT</mag> 条件的两种情况:
+<ul style="margin-top:-16px;margin-bottom:16px;line-height:30px;">
+<li style="margin:1px 36px;">$\alpha_i=0$，此样本不会在分类器 (式 $(1.5)$) 中出现</li>
+<li style="margin:1px 36px;">$\alpha_i &gt; 0,\enspace y_if(\bm{x_i})=1$，则此样本位于边界上，是一个支持向量</li>
+</ul>
+由此引出 <mag>SVM</mag> 的重要性质: 训练完成后，大量样本无需保留，最终模型仅与支持向量有关。<br>
+“支持向量机”这个名字也是由此而来，暗示此类学习器的关键是通过支持向量构建出解，且复杂度与支持向量的数目相关。</p>
+<h3 id="2_1">2. 核技巧</h3>
+<p>如果在原始样本空间中线性不可分，可将样本映射至更高维空间，使其在特征空间中线性可分。这一部分假设样本在特征空间上是线性可分的。</p>
+<h4 id="1_1">(1). 基本思想</h4>
+<p>假设存在满足条件的映射 $\phi(\bm{x}):\ \mathcal{X}\to\mathcal{H}$，将其代入式 $(1.3)$，得到原问题高维的形式:
+<div class="ilmath2">
+$
+\displaystyle
+\underset{\bm{w}, b}{\min}\enspace \frac{1}{2}||\bm{w}||^2,\quad\mathrm{s.t.}\enspace y_i(\bm{w^\mathrm{T}}\phi(\bm{x_i})+b)\geq 1,\quad i=1,2,...,m
+$
+</div>
+其对偶形式涉及计算 $\phi(\bm{x_i})^\mathrm{T}\phi(\bm{x_j})$，由于特征空间维数可能很高 (甚至是无穷维，无法计算)，为避开计算障碍，引入核函数 $K(\bm{x_i},\bm{x_j})=\langle\bm{x_i},\bm{x_j}\rangle=\phi(\bm{x_i})^\mathrm{T}\phi(\bm{x_j})$，对偶式 $(1.4)$ 转化为:</p>
+<div class="ilmath2">$\displaystyle
+\max_\alpha \ \ -\frac{1}{2}\sum_{i=1}^m\sum_{j=1}^m\alpha_i\alpha_jy_iy_j\phi(\bm{x_i})^\mathrm{T}\phi(\bm{x_j})+\sum_{i=1}^m\alpha_i,\quad\mathrm{s.t.}\enspace \alpha_i\geq 0,\enspace \sum\alpha_iy_i=0
+$
+</div>
+
+<p>求解后即可得到
+<div class="ilmath2">
+$\displaystyle
+f(\bm{x})=\bm{w^\mathrm{T}}\phi(\bm{x})+b=\sum_{i=1}^m\alpha_iy_iK(\bm{x},\bm{x_i})+b
+$
+</div></p>
+<blockquote class="ktb1"><div class="ruler">
+   <div>
+    <b>定义: </b>设输入空间为 $\mathcal{X}$ (欧式空间 $\mathbb{R}^n$ 子集)，特征空间为 $\mathcal{H}$ (希尔伯特空间)，若存在 $\phi(\bm{x}):\ \mathcal{X}\to\mathcal{H}$，使得对所有 $\bm{x},\bm{z}\in\mathcal{X}$，满足 $K(\bm{x},\bm{z})=\phi(\bm{x})\cdot\phi(\bm{z})$，就称 $K(\bm{x},\bm{z})$ 为核函数
+</div></blockquote>
+
+<blockquote style="margin-top:0px;margin-bottom:-10px;margin-left:1px;">
+<cs><i>e.g.</i></cs>&emsp;取 $\mathcal{X}=\mathbb{R}^2,\enspace\mathcal{H}=\mathbb{R}^4$，$\phi(\bm{x})=(x_1^2,\ x_1x_2,\ x_1x_2,\ x_2^2)$，则 $K(\bm{x},\bm{z})=(\bm{x}\cdot\bm{z})^2$
+</blockquote>
+
+<div style="height:30px"></div>
+
+<h4 id="2_2">(2). 正定核判定</h4>
+<p>给定函数 $K(\cdot,\cdot)$，我们需要一种方法，直接判定其是否满足核函数的条件</p>
+<blockquote class="ktb1"><div class="ruler">
+   <div>
+    <b>定理: </b>设 $K:\ \mathcal{X\times X}\to\mathbb{R}$ 是对称函数，$i=1,2,...,m$<br>
+    $K(\bm{x},\bm{z})$ 是正定核 $\Longleftrightarrow$ 对 $\forall \bm{x_i}\in\mathcal{X}$，$K(\bm{x},\bm{z})$ 对应的 <mag>Gram</mag> 矩阵 $[K(\bm{x_i},\bm{x_j})]_{m\times m}$ 半正定<br>
+    (任何核函数都饮食定义了一个再生希尔伯特空间)
+</div></blockquote>
+
+<p>由于特征空间未必线性可分，核函数往往是 <cy>SVM</cy> 的最大变数，不合适的核函数会导致性能不佳。实际应用中，核函数的有效性需要通过实验验证。</p>
+<h3 id="3-svm">3. 软间隔 <cy>SVM</cy></h3>
+<p>在实际应用中，硬间隔 <cy>SVM</cy> 面临的问题：
+<ul style="margin-top:-15px;margin-bottom:4px;line-height:30px;">
+<li style="margin:1px 22px;">样本很难在样本空间或特征空间中是线性可分的</li>
+<li style="margin:1px 22px;">即便线性可分，也难以判断是不是由过拟合造成的</li>
+</ul>
+缓解的方法是允许某些样本出错，不满足约束 $y_i(\bm{w^\mathrm{T}\bm{x}+b})\geq 1$，且出错的样本应尽可能少，由此引入软间隔 (<mag>soft margin</mag>) 的概念</p>
+<p><img src="../img/soft.png" height=200 style="margin-left:150px"></p>
+<h4 id="1_2">(1). 基本问题</h4>
+<p>为每个样本 $(\bm{x_i},y_i)$ 引入一个松弛变量 $\xi_i$ (<mag>slack variables</mag>)，令约束条件变为</p>
+<div class="ilmath2" style="margin-left:150px">
+$y_i(\bm{w^\mathrm{T}}\bm{x_i}+b)\geq 1-\xi_i$
+</div>
+
+<p>为使出错点尽可能少，还要在目标函数中引入惩罚项，因此原问题变为</p>
+<div class="ilmath2">
+$
+\displaystyle
+\underset{\bm{w}, b, \xi}{\min}\enspace \frac{1}{2}||\bm{w}||^2+C\sum_{i=1}^n\xi_i, \quad\mathrm{s.t.}\enspace y_i(\bm{w^\mathrm{T}}\bm{x_i}+b)\geq 1-\xi_i,\quad \xi_i> 0,\quad i=1,2,...,n
+$
+<span style="float:right">$(3.1)$</span>
+</div>
+
+<p>其中 $C&gt; 0$ 为惩罚系数，值越大则对误分类的惩罚越大，一般由应用问题决定，$C\to\infty$ 时和硬间隔等价。
+<div style="height:10px"></div></p>
+<h4 id="2_3">(2). 对偶问题</h4>
+<p>原问题拉格朗日函数为 
+<div class="ilmath">
+$\displaystyle
+L(\bm{w},b,\bm{\xi},\bm{\alpha},\bm{\mu})=\frac{1}{2}||\bm{w}||^2+C\sum_{i=1}^n \xi_i-\sum_{i=1}^n \alpha_i(y_i(\bm{w^\mathrm{T}}\bm{x_i}+b)-1+\xi_i)-\sum_{i=1}^n\mu_i\xi_i
+$
+</div>
+其中 $\alpha_i\geq 0$，$\mu_i\geq 0$。对 $L$ 求 $\bm{w}、b、\bm{\xi}$ 的偏导，令之为 $0$，代回 $L$，得到对偶形式:</p>
+<div class="ilmath">
+$\displaystyle
+\underset{\alpha}{\max}\enspace -\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^n \alpha_i\alpha_j y_i y_j(\bm{x_i^\mathrm{T}}\bm{x_j})+\sum_{i=1}^n\alpha_i
+$
+<span style="float:right">$(3.2)$</span><br>
+$\displaystyle
+\mathrm{s.t.}\enspace \sum_{i=1}^n \alpha_i y_i = 0,\enspace 0\leq \alpha_i\leq C$
+</div>
+
+<p>求解完成并代回原式子，得到和 $(1.5)$ 一样的式子<br>&emsp;&emsp;&emsp;&emsp;
+<span style="line-height:50px">$\displaystyle
+f(\bm{x})=\bm{w}^\mathrm{T}\bm{x}+b=\sum_{i=1}^m\alpha_iy_i\bm{x_i^\mathrm{T}}\bm{x}+b
+$<br>
+类似地，<mag>KKT</mag> 条件要求</p>
+<div class="ilmath" style="margin-top:-20px">
+$
+\begin{cases}
+\displaystyle
+\alpha_i\geq 0,\quad \mu_i\geq 0 \\
+y_if(\bm{x_i})-1+\xi_i\geq 0 \\
+\alpha_i(y_if(\bm{x_i})-1+\xi_i)=0 \\
+\xi\geq 0,\quad \mu_i\xi_i=0
+\end{cases}
+$
+</div>
+
+<p>对任意样本 $(\bm{x_i},y_i)$，讨论 <mag>KKT</mag> 的两种情况
+<ul style="margin-top:-15px;margin-bottom:4px;line-height:30px;">
+<li style="margin:1px 22px;">若 $\alpha_i=0$，该样本不在分类器中出现</li>
+<li style="margin:1px 22px;">若 $\alpha_i &gt; 0$，则 $y_if(\bm{x_i})=1-\xi_i$，该样本是支持向量</li>
+    <ul style="margin-top:0px;margin-bottom:4px;line-height:30px;list-style-type:circle">
+    <li style="margin:1px 42px;">若 $\alpha_i&lt; C$，则 $\mu_i&gt; 0$，进而 $\xi_i=0$，该样本在边界上</li>
+    <li style="margin:1px 42px;">若 $\alpha_i= C$，则 $\mu_i= 0$，此时，若 $\xi_i\leq 1$，该样本在最大间隔内部；若 $\xi_i &gt;1$，该样本被错误分类</li>
+</ul>
+</ul>
+由此，软间隔的支持向量或者在间隔边界上，或者在边界之间且被正确分类，或者在误分一侧。
+<div style="height:30px"></div></p>
+<h4 id="3_1">(3). 损失函数</h4>
+<blockquote class="ktb1"><div class="ruler">
+   <div>
+    <b>定理: </b>软间隔 <cy>SVM</cy> 原始最优化问题 式 $(3.1)$ 等价于最优化问题 <br>
+<div class="ilmath" style="margin-top:9px;margin-bottom:5px">
+$\displaystyle
+\underset{w,b}{\min}\enspace \sum_{i=1}^n \ell_{\mathrm{hinge}}(y_i(\bm{w^\mathrm{T}}\bm{x})+b)+\lambda||\bm{w}||^2
+$
+</div>
+其中 $\ell_{\mathrm{hinge}}(z)=\mathrm{max}(0, 1-z)$，也称 "合页损失函数"
+</div></blockquote>
+
+<p>从这个角度看，目标函数 式 $(3.1)$ 也可写做
+<div class="ilmath">
+$\displaystyle
+\underset{\bm{w},b}{\min}\enspace \frac{1}{2}||\bm{w}||^2+C\sum_{i=1}^m\ell(y_i(\bm{w^\mathrm{T}}\bm{x_i}+b)-1)
+$
+</div></p>
+<p>这样，就将原问题转化为 <msf>object = loss + regularization</msf> 的形式，</p>
 <p></font></p>
                 
               

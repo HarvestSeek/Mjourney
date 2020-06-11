@@ -923,13 +923,14 @@ $</span>
 \end{cases}
 $</div>
 
+<p>类似地，<mag>KKT</mag> 条件也是有最优解的必要条件。</p>
 <h4 id="3">(3). 对偶形式</h4>
-<p>记 (2). 中得到的结论为原问题 (<mag>primal</mag>)，原问题的局限性：
+<p>记 (2). 中得到的问题形式为原问题 (<mag>primal</mag>)，原问题的局限性：
 <ul style="margin-top:-15px;margin-bottom:10px;line-height:30px;">
-<li style="margin:1px 26px;">约束太多: 共 $m+n$ 个约束</li>
+<li style="margin:1px 26px;">约束太多: 必须满足 $g_i(\bm{x})=0$ 和 $h_j(\bm{x})\leq 0$，共 $m+n$ 个约束</li>
 <li style="margin:1px 26px;">$f(\bm{x})$ 的凹凸性不明确，无法应用凸优化的方法</li>
 </ul>
-因此，我们寻求一种对偶 (<mag>dual</mag>) 形式，它只有一个约束，且原函数一定是凹的，下面给出推导.<br><br>
+因此，我们寻求一种对偶 (<mag>dual</mag>) 形式，它的约束更少，且原函数一定是凹的，下面给出推导.<br><br>
 为原问题构造广义拉格朗日函数: $\displaystyle L(\bm{x},\bm{\lambda},\bm{\mu})=f(\bm{x})+\sum_i^m\lambda_ig_i(\bm{x})+\sum_j^n\mu_jh_j(\bm{x})$<br>
 定义 
 $\displaystyle 
@@ -940,8 +941,16 @@ f(\bm{x}) &amp;\mathsf{if}\ \bm{x}\ \mathsf{satisfies\ primal\ constraints} \\
 \end{cases} \enspace(\mu_j\geq 0)
 $<br>
 因此 $\displaystyle \min f(\bm{x})\ \Longleftrightarrow\ \min\ \theta(\bm{x})\ \Longleftrightarrow\ \min_{\bm{x}} \max_{\bm{\lambda,\mu}:\ \bm{\mu}\geq 0} L(\bm{x},\bm{\lambda},\bm{\mu})$，它的解记为 $p^*$<br>
-由此引出原问题的对偶形式: 
-$\displaystyle \max_{\bm{\lambda},\bm{\mu}}\ \theta'(\bm{\lambda},\bm{\mu})=\max_{\bm{\lambda},\bm{\mu}}\ \min_{\bm{x}}\ L(\bm{x},\bm{\lambda},\bm{\mu})$，它有一个重要性质:
+由此引出原问题的对偶形式: <br>
+<div class="ilmath2" style="margin-top:15px">
+$
+\displaystyle 
+\max_{\bm{\lambda},\bm{\mu}}\ \theta'(\bm{\lambda},\bm{\mu})=\max_{\bm{\lambda},\bm{\mu}}\ \min_{\bm{x}}\ L(\bm{x},\bm{\lambda},\bm{\mu}) \newline
+\mathrm{s.t.}\enspace \mu_j\geq 0,\enspace j=1,2,...,n
+$
+</div>
+<br>
+它有一个重要性质:
 <blockquote class="ktb1"><div class="ruler">
    <div style="padding-left:10px">
     $\displaystyle\forall\mu\geq 0\ \Longrightarrow\ \theta'(\bm{\lambda},\bm{\mu})\leq p^ * $，即: 对偶形式的最优解是原最优解的下界</div>
