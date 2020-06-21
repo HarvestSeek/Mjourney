@@ -566,8 +566,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Bayes/hmm/" title="3. HMM" class="md-nav__link">
-      3. HMM
+    <a href="../../Bayes/hmm/" title="3. hmm" class="md-nav__link">
+      3. hmm
     </a>
   </li>
 
@@ -901,7 +901,7 @@ $\global\def\g{\operatorname{grad}}$</p>
 <p><cy>BP</cy> 算法是迄今为止最成功的神经网络学习算法，下面以经典的全连接网络为例进行介绍。</p>
 <h4 id="1_1">(1). 基本推导</h4>
 <p>假设 $D=\lbrace (\bm{x},\bm{y})\rbrace $ 是只有一个元素的数据集，通过它训练下图的神经网络。<br>
-首先随机初始化网络的参数，通过 $(\bm{x},\bm{y})$ 前向传播计算得到 $\bm{x}$、$\bm{h}$ 和 $\bm{y}$ 的值。</p>
+首先随机初始化网络的参数，通过 $(\bm{x},\bm{y})$ 前向传播计算得到 $\bm{x}$、$\bm{h}$ 和 $\bm{\hat{y}}$ 的值。</p>
 <p><svg width="334" height="246" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334 280" style="margin-left:70px;margin-bottom:-40px;">
     <ellipse stroke="black" stroke-width="1" fill="none" cx="22.5" cy="76.5" rx="20" ry="20"/>
     <text x="13.5" y="81.5" font-family="m" font-style="italic" font-size="20">x
@@ -969,8 +969,8 @@ $\displaystyle C=\frac{1}{2}\sum_{i=1}^{n}(\hat{y_i}-y_i)^2$
     <polygon stroke="black" stroke-width="1" points="46.189,230.005 20.811,192.995"/>
     <polygon stroke="black" stroke-width="1" points="55.932,78.562 55.068,29.438"/>
 </svg>  ​
-<cy>BP</cy> 算法基于梯度下降调整参数，给定学习率，调整大小 $\displaystyle\Delta w_{ij}=-\eta\frac{\partial C}{\partial w_{ij}}$</p>
-<p>以 $y_1\to w_2$ 为例执行计算，可得:
+<cy>BP</cy> 算法基于梯度下降调整参数，给定学习率 $\eta$，有 $\displaystyle\Delta w_{ij}=-\eta\frac{\partial C}{\partial w_{ij}}$</p>
+<p>以 $y_1\to h_2$ 为例执行计算，可得:
 <div class="ilmath2" style="margin-left:110px">
 $\displaystyle \f{\p C}{\p w_{12}}=\f{\p C}{\p \hat{y_1}}\cdot\f{\p \hat{y_1}}{\p\beta_1}\cdot \f{\p \beta_1}{\p w_{12}}
 =-g_1\cdot \f{\p \beta_1}{\p w_{12}}
@@ -996,7 +996,7 @@ $
 <p>和上述计算过程类似，$\small\dfrac{\p \alpha_2}{\p v_{11}}=x_1$，$\small\dfrac{\p h_2}{\p \alpha_2}$ 用到 $\text{sigmoid}$ 的性质，而 $\small\displaystyle\f{\p C}{\p h_2}$ 用到了前面的计算过程</p>
 <div class="ilmath2" style="margin-left:110px">
 $\displaystyle
-\f{\p C}{\p h_2}=\f{\p C}{\p \hat{y_1}}\cdot\f{\p\hat{y_1}}{\p \alpha_2}\cdot\frac{\p \alpha_2}{\p h_2}+\f{\p C}{\p\hat{y_2}}\cdot\f{\p\hat{y_2}}{\p \alpha_2}\cdot\frac{\p \alpha_2}{\p h_2}
+\f{\p C}{\p h_2}=\f{\p C}{\p \hat{y_1}}\cdot\f{\p\hat{y_1}}{\p \beta_1}\cdot\frac{\p \beta_1}{\p h_2}+\f{\p C}{\p\hat{y_2}}\cdot\f{\p\hat{y_2}}{\p \beta_2}\cdot\frac{\p \beta_2}{\p h_2}
 $
 <span style="float:right">$(2.5)$</span>
 </div>
@@ -1015,11 +1015,11 @@ $
 实际上，对它的理解可以更加直观一些。<br>
 <ul style="margin-top:-10px;margin-bottom:10px;line-height:30px;list-style-type:square;">
 <li style="margin:1px 4px;margin-bottom:6px;">假设原始数据 $\bm{y}=(1, 0.2)^\mathrm{T}$，而经过前向传播得到的 $\hat{\bm{y}}=(0.1, 0.1)^\mathrm{T}$，<br>
-因此，我们的目的是在反向传播过程中通过梯度下降增大 $\hat{y_1},\ \hat{y_2}$ <br>
-(由梯度的性质，增大的值和 $y_i-\hat{y_i}$ 成正比，在式 $2.2$ 中的 $\p C/\p \hat{y_1}$ 上得以体现)</li>
+因此，我们“ 期待 $\hat{y_1},\ \hat{y_2}$ 增大 ”(<cy2>i.e.</cy2> $\displaystyle\small\f{\p C}{\p \hat{y_1}} &lt; 0$) <br>
+(由梯度的性质，增大的值和 $y_i-\hat{y_i}$ 成正比)</li>
 <li style="margin:1px 4px;margin-bottom:9px;">把目光聚焦于 $\hat{y_1}$ 上 (假设以 $\hat{y_1}(\bm{w_{1}}, b, \bm{h})$ 为目标函数)，要增大 $\hat{y_1}$，可以增大 $w_{1i}$、增大 $b_{y_1}$ 或 增大 $h_i$. 先分别求对 $w_{1i}、b$ 的偏导，进行梯度下降</li>
-<li style="margin:1px 4px;margin-bottom:6px;">然后求 $\displaystyle\small\f{\p\hat{y_1}}{\p h_i}$，这个值的含义是 "$\hat{y_1}$ 对 $h_i$ 变化的期待"</li>
-<li style="margin:1px 4px;margin-bottom:6px;">再考虑 $\hat{y_2}$，重复上述过程。最后，把输出层 $\bm{\hat{y}}$ 对隐层 $h_i$ 期待的改变累加，就得到了一串 $h_i$ 的变化量。这里就体现了 <cy>BP</cy> 算法的反向 "传播" 的理念了，通过 <mag>chain rule</mag> 和输出层的变化量，得到了隐层的变化量。</li>
+<li style="margin:1px 4px;margin-bottom:6px;">然后求 $\displaystyle\small\f{\p\hat{y_1}}{\p h_i}$，这个值的含义是 “增大 $\hat{y_1}$ 对 $h_i$ 变化的期待”</li>
+<li style="margin:1px 4px;margin-bottom:6px;">再考虑 $\hat{y_2}$，重复上述过程。最后，对于每个隐层的 $h_i$，把输出层 $\bm{\hat{y}}$ 对它的期待的改变累加，就得到了一串 $h_i$ 的变化量。这里就体现了 <cy>BP</cy> 算法的反向 "传播" 的理念了，通过 <mag>chain rule</mag> 和输出层的变化量，得到了隐层的变化量。</li>
 </ul></p>
 <h4 id="3">(3). 梯度下降的方式</h4>
 <p>上面的例子假设数据集的基数为 <cy>1</cy>。当数据集很大时:
