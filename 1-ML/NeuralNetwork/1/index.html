@@ -506,6 +506,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ac-loss/" title="2. functions" class="md-nav__link">
+      2. functions
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1038,7 +1050,8 @@ $
     </ul>
 <li style="margin:1px 26px;">小批量梯度下降 (<cy2>Mini-BGD</cy2>):&emsp;<cy>SGD</cy> 和 <cy>BGD</cy> 的折中，把数据集随机分成若干 <mag>mini batch</mag>，每次迭代使用 <mag>batch size</mag> 个样本进行更新</li>
     <ul style="margin-top:0px;margin-bottom:0px;list-style-type:circle;line-height:30px;">
-    <li style="margin:1px 56px;">增大 <mag>batch</mag> 可充分利用 <cy>GPU</cy></li>
+    <li style="margin:1px 56px;">合理地增大 <mag>batch</mag> 可充分利用 <cy>GPU</cy>，提高内存利用率，减小 <mag>loss</mag> 的震荡</li>
+    <li style="margin:1px 56px;">小 <mag>batch</mag> 引入随机性，尽管计算速度快，但同样可能造成收敛速度慢甚至不收敛</li>
     </ul>
 </ul></p>
 <p></font></p>
@@ -1075,13 +1088,13 @@ $
           </a>
         
         
-          <a href="../../Bayes/1/" title="1. basis" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../ac-loss/" title="2. functions" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                1. basis
+                2. functions
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
