@@ -587,6 +587,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../NeuralNetwork/cnn/" title="4. cnn" class="md-nav__link">
+      4. cnn
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -934,7 +946,7 @@ $\displaystyle
 $
 </div>
 
-<p>以二分类为例，当正负样本分布不均匀，我们对 <cy>minority class</cy> 更感兴趣的时候，精度就没有参考价值了。</p>
+<p>精度的应用场景相对宽泛了一些；例如，当我们想知道检索出的目标类中有多少是正确的，或实际的目标类被检索出多少时，精度就不够用了。</p>
 <h3 id="2">2. 精确率与召回率</h3>
 <h4 id="1_1">(1). 定义</h4>
 <p>对于二分类为题，可根据样本的真实类别和学习器预测类别将其划分为 真正例、假正例、真反例、假反例。</p>
@@ -947,7 +959,7 @@ $
 </div>
 
 <ul style="margin-top:0px;margin-bottom:0px;line-height:30px;">
-<li style="margin:1px 6px;">精确率: 针对模型的预测而言，当它做出一个预测时，预测正确的可能性是多少</li>
+<li style="margin:1px 6px;">精确率: 针对模型的预测而言，当它做出一个 (正) 预测时，预测正确的可能性是多少</li>
 <li style="margin:1px 6px;">召回率: 针对所有样本而言，对某一类的所有样本预测正确的覆盖率是多少</li>
 </ul>
 

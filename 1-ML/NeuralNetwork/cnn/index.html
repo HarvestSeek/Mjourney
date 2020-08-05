@@ -15,7 +15,7 @@
     
     
       
-        <title>3. rnn - MNotes</title>
+        <title>4. cnn - MNotes</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#smalltext1-rnn" class="md-skip">
+        <a href="#1" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              3. rnn
+              4. cnn
             
           </span>
         </div>
@@ -507,6 +507,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../rnn/" title="3. rnn" class="md-nav__link">
+      3. rnn
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -516,14 +528,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        3. rnn
+        4. cnn
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
         </span>
       </label>
     
-    <a href="./" title="3. rnn" class="md-nav__link md-nav__link--active">
-      3. rnn
+    <a href="./" title="4. cnn" class="md-nav__link md-nav__link--active">
+      4. cnn
     </a>
     
       
@@ -540,37 +552,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#smalltext1-rnn" class="md-nav__link">
-    $\small\text{1. RNN}$
+  <a href="#1" class="md-nav__link">
+    1. 基础运算
   </a>
   
-    <nav class="md-nav" aria-label="$\small\text{1. RNN}$">
+    <nav class="md-nav" aria-label="1. 基础运算">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-standard-rnn" class="md-nav__link">
-    (1). standard RNN
+  <a href="#1_1" class="md-nav__link">
+    (1). 卷积
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-simple-rnn" class="md-nav__link">
-    (2). simple RNN
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    (3). 反向传播
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    (4). 局限
+  <a href="#2" class="md-nav__link">
+    (2). 池化
   </a>
   
 </li>
@@ -580,29 +578,10 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#smalltext2-lstm" class="md-nav__link">
-    $\small\text{2. LSTM}$
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../cnn/" title="4. cnn" class="md-nav__link">
-      4. cnn
-    </a>
   </li>
 
         
@@ -886,50 +865,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#smalltext1-rnn" class="md-nav__link">
-    $\small\text{1. RNN}$
+  <a href="#1" class="md-nav__link">
+    1. 基础运算
   </a>
   
-    <nav class="md-nav" aria-label="$\small\text{1. RNN}$">
+    <nav class="md-nav" aria-label="1. 基础运算">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-standard-rnn" class="md-nav__link">
-    (1). standard RNN
+  <a href="#1_1" class="md-nav__link">
+    (1). 卷积
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-simple-rnn" class="md-nav__link">
-    (2). simple RNN
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    (3). 反向传播
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    (4). 局限
+  <a href="#2" class="md-nav__link">
+    (2). 池化
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#smalltext2-lstm" class="md-nav__link">
-    $\small\text{2. LSTM}$
-  </a>
   
 </li>
       
@@ -949,111 +907,42 @@
                   
                 
                 
-                  <h1>3. rnn</h1>
+                  <h1>4. cnn</h1>
                 
                 <p><font class="generalcy"></p>
-<p>$\global\def\p{\partial} $
-$\global\def\f{\frac} $</p>
-<h3 id="smalltext1-rnn">$\small\text{1. RNN}$</h3>
-<p>以 "<mag>I went to Nepal in 2009</mag>" 和 "<mag>In 2009, I went to Nepal</mag>" 作为输入，我们需要一个模型，无论 <mag>2009</mag> 出现在哪个位置，都能学到年份信息。</p>
-<h4 id="1-standard-rnn">(1). standard RNN</h4>
-<p>用系统的状态方程描述 <cy>RNN</cy>:&emsp;$\bm{h}^{(t)} = f(\bm{h}^{(t-1)}, \bm{x}^{(t)};\ \theta)$，其网络结构的示例如下:</p>
-<p><img src="../img/rnndetail.png" height=320></p>
-<p>按照时间步展开，可表示为:</p>
-<p>&emsp;&emsp;&emsp;&emsp;<img src="../img/rnnstep.png" height=170></p>
-<p>上述例子每个时间步的方程组:</p>
-<div class="ilmath2">
-$\displaystyle
-\begin{cases}
-\bm{h}^{(t)} = \mathrm{tanh}(\bm{b} + \bm{W}\bm{h}^{(t-1)} + \bm{U}\bm{x}^{(t)}) \\
-\bm{o}^{(t)} = \bm{c} + \bm{V} \bm{h}^{(t)} \\
-\hat{\bm{y}}^{(t)} = \mathrm{softmax}(\bm{o}^{(t)})
-\end{cases}
-$
-</div>
-
-<p>综上，<cy>RNN</cy> 的基本特性如下:
-<ul style="margin-top:-13px;margin-bottom:10px;line-height:30px;">
-<li style="margin:1px 26px;">隐层每一轮的输出都需要上一轮的隐层的输出，即: $\bm{h}^{(t)} = g^{(t)}(\bm{x}^{(t)},\bm{x}^{(t-1)},...,\bm{x}^{(1)})$<br>
-<cy>RNN</cy> 记忆了 $t$ 步以前的所有输入知识，实现第 $t$ 步的预测</li>
-<li style="margin:1px 26px;">通过共享参数 $\bm{U, V, W}$ 学习整个序列的特征或规律，其好处有:</li>
+<h3 id="1">1. 基础运算</h3>
+<h4 id="1_1">(1). 卷积</h4>
+<p>卷积的动机在于以下三个重要思想:
+<ul style="margin-top:-14px;margin-bottom:10px">
+<li style="margin:1px 12px;">稀疏交互 (<mag>sparse interaction</mag>) 和 参数共享 (<mag>parameter sharing</mag>): </li>
     <ul style="margin-top:0px;margin-bottom:0px;list-style-type:circle;line-height:30px;">
-    <li style="margin:1px 46px;">泛化能力强，序列长度不局限于训练数据 $\bm{x}$ 的长度</li>
-    <li style="margin:1px 46px;">减小复杂度</li>
+    <li style="margin:1px 22px;">传统的全连接网络中，每个输出单元与每个输入单元都产生交互，而且权重矩阵的每个元素也只使用一次。</li>
+    <li style="margin:1px 22px;">稀疏交互受启发于生物学中的视觉系统结构，视觉皮层的神经元就是局部接收信息的，它只响应特定区域的刺激；图像本身也是局部像素之间关联紧密，较远的像素关联较弱。因此，<mag>CNN</mag> 先对局部进行感知，然后在更高层将局部的信息综合起来得到全局的信息；每个卷积核对应提取一种特征，因此参数是共享的。<br>
+    &emsp;<img src="../img/cnnrp.png" height=180><br>
+    如图，深层的神经元具有更大的 <mag>receptive field</mag>。</li>
+    <li style="margin:1px 22px;">如果有 $m$ 个输入和 $n$ 个输出，矩阵乘法需要时间 $O(m\times n)$，而稀疏交互需要 $O(k\times n)$，其中 $k$ 为连接数；由于输入共享参数，只需要 $k$ 个参数的存储空间。<mag>CNN</mag> 通过这种方式提升了特征提取的效率。</li>
+    </ul>
+<li style="margin:1px 12px;">等变表示 (<mag>equivariant representation</mag>)</li>
+    <ul style="margin-top:0px;margin-bottom:0px;list-style-type:circle;line-height:30px;">
+    <li style="margin:1px 22px;">如果 $f(g(x))=g(f(x))$，就说 $f$ 对 $g$ 具有等变性</li>
+    <li style="margin:1px 22px;">卷积运算对图像的平移变换是等变的</li>
+    <li style="margin:1px 22px;">如果有 $m$ 个输入和 $n$ 个输出，矩阵乘法需要时间 $O(m\times n)$，而稀疏交互需要 $O(k\times n)$，其中 $k$ 为连接数；由于输入共享参数，只需要 $k$ 个参数的存储空间。<mag>CNN</mag> 通过这种方式提升了特征提取的效率。</li>
     </ul>
 </ul></p>
-<h4 id="2-simple-rnn">(2). simple RNN</h4>
-<p>&emsp;&emsp;&emsp;&emsp;<img src="../img/rnnstandard.png" height=200></p>
-<p><cy>simple RNN vs. standard RNN</cy>:
-<ul style="margin-top:-14px;margin-bottom:10px;line-height:30px;">
-<li style="margin:1px 26px;">这种结构也可以描述 "每个 <cy>timestep</cy> 的决策与前面的决策有关"，但类比于人脑处理序列信息的过程 (例如拼积木)，预测当前输出时，依据的不仅仅是上一个输出，通常是一个模糊的、和过去有关的框架。</li>
-<li style="margin:1px 26px;">数学上，<cy>simple RNN</cy> 只能表示更小的函数集合</li>
-<li style="margin:1px 26px;"><cy>simple RNN</cy> 更容易训练，可以并行</li>
+<h4 id="2">(2). 池化</h4>
+<p>在 <mag>CNN</mag> 中，卷积和激活之后通常还有一步池化操作。池化的作用:
+<ul style="margin-top:-14px;margin-bottom:10px">
+<li style="margin:1px 12px;">特征降维，减小计算量</li>
+<li style="margin:1px 12px;">引入了近似平移不变性</li>
+    <ul style="margin-top:0px;margin-bottom:0px;list-style-type:circle;line-height:30px;">
+    <li style="margin:1px 22px;">平移不变性是很有用的性质，例如，我们希望只关心原图中特征是否出现而不关心它出现的位置，即使出现位置改变不影响识别效果</li>
+    <li style="margin:1px 22px;">由图可知，最大池化引入了近似的平移不变性: 将输入右移一个单位，但上面的部分只有一半的像素改变<br>
+    &emsp;<img src="../img/poolingei.png" height=120></li>
+    <li style="margin:1px 22px;">通过对不同特征图共同池化，可以学得对其他操作的不变性。<br>
+    &emsp;<img src="../img/otherei.png" height=200><br>
+    如图可学得对旋转操作的不变性。如果某个形态的数字 $5$ 的特征被识别出，相应的特征被激活，就会在最终的最大池化反映出来。</li>
+    </ul>
 </ul></p>
-<h4 id="3">(3). 反向传播</h4>
-<p><cy>RNN</cy> 的反向传播算法为 <cy>BPTT</cy> (<cy2>backpopagation through time</cy2>) 算法，本质上还是 <cy>BP</cy> 形式的梯度下降。</p>
-<p>&emsp;&emsp;<img src="../img/bpttp.png" height=200></p>
-<p>以上图为例，其前向计算过程为:</p>
-<div class="ilmath">
-$\displaystyle
-\bm{h_t} = \mathrm{tanh}(\bm{U}\bm{x_t}+\bm{W}\bm{s_{t-1}}) \\
-\hat{\bm{y}}_t = \mathrm{softmax}(\bm{Vh_t}) \\
-E(\bm{y}, \bm{\hat{y}}) = \sum_t E_t(\bm{y}_t, \hat{\bm{y}}_t) = - \sum_t \bm{y_t} \log \hat{\bm{y}}_t
-$
-</div>
-
-<p>以 <cy>timestep 3</cy> 为例反向传播。<br>
-对 $\bm{V}$ 求导只涉及当前 <cy>timestep</cy>，因此比较简单</p>
-<div class="ilmath">
-$\displaystyle
-\f {\p E_3} {\p \bm{V}} = \f {\p E_3} {\p \hat{\bm{y}}_3} \f {\p \hat{\bm{y}}_3} {\p \bm{o}_3} \f {\p \bm{o}_3} {\p \bm{V}}
-$
-</div>
-
-<p>对 $\bm{W}$ 和 $\bm{U}$ 的求导过程类似</p>
-<div class="ilmath">
-$\begin{aligned}\displaystyle
-\f {\p \bm{h}_3} {\p \bm{W}} &= \f {\p \bm{h}_3} {\p \bm{W}} + \f {\p \bm{h}_3}{\p \bm{h}_2} \f {\p \bm{h}_2} {\p \bm{W}}
- = \f {\p \bm{h}_3} {\p \bm{W}} + \f {\p \bm{h}_3}{\p \bm{h}_2} \left( \f {\p \bm{h}_2} {\p \bm{W}} + \f {\p \bm{h}_2} {\p \bm{h}_1} \f {\p \bm{h}_1} {\p \bm{W}} \right) = ... \\
-&= \sum_{i=0}^3 \f {\p \bm{h}_i} {\p \bm{W}} \prod_{j=i+1}^3 \f {\p \bm{h}_j} {\p \bm{h}_{j-1}}
-\end{aligned}
-$<br>
-<span style = "line-height:58px">$\displaystyle
-\f {\p E_3} {\p \bm{W}} = \f {\p E_3} {\p \hat{\bm{y}}_3} \f {\p \hat{\bm{y}}_3} {\p \bm{h}_3} \f {\p \bm{h}_3} {\p \bm{W}} 
-= \f {\p E_3} {\p \hat{\bm{y}}_3} \f {\p \hat{\bm{y}}_3} {\p \bm{h}_3} \left( \sum_{i=0}^3 \f {\p \bm{h}_i} {\p \bm{W}} \prod_{j=i+1}^3 \f {\p \bm{h}_j} {\p \bm{h}_{j-1}} \right)
-$</span>
-</div>
-
-<p>可以观察到，在对 $\bm{W}$ 求导的过程中，误差 $E_n$ 沿着 <cy>timestep</cy> 向后传播，最后 $\bm{W}$ 的梯度为传播到每个 <cy>timestep</cy> 上误差的和。<br>
-其中 $\small \displaystyle \f {\p \bm{h} _ j} {\p \bm{h} _ {j-1}} = \bm{W}\cdot \mathrm{tanh}'$，当 <cy>RNN</cy> 层数很深时 (时间上)，距离 <cy>RNN</cy> 尾端较远的误差中的连乘项的值要么很大，要么很小，这就是 <cy>RNN</cy> 容易发生 (伪) 梯度消失或梯度爆炸的原因。</p>
-<h4 id="4">(4). 局限</h4>
-<p><cy>RNN</cy> 的主要问题之一是长期依赖: 当前输入依赖的输入如果距离当前输入较远的时候，效果很差。<br>
-原因在于，$\bm{U}$ 和 $\bm{W}$ 是共享的，其梯度 $g = g_1 + g_2 + ...$，距离尾端越远的梯度就越容易发生梯度消失，因此，尽管理论上存在一个具有长期依赖功能的 <cy>RNN</cy>，但由于上述特性的存在，这样的 <cy>RNN</cy> 难以通过训练得到。</p>
-<h3 id="smalltext2-lstm">$\small\text{2. LSTM}$</h3>
-<p><cy>LSTM</cy> (长短期记忆, <cy2>long short term memory</cy2>) 受神经元细胞具有记忆功能的启发，改进了 <cy>RNN</cy>。</p>
-<p><img src="../img/lstm.png" style="margin-left:100px" height=270></p>
-<p><cy>LSTM</cy> 的状态由一个 <mag>pair</mag> $(c^{(t)}, h^{(t)})$ 组成，其中 $c^{(t)}$ 是长期记忆单元，$h^{(t)}$ 是短期记忆单元。<br></p>
-<div class="ilmath">
-$\displaystyle
-\begin{aligned}
-&\bm{z}^f = \sigma(\bm{W}^f\ [\bm{x}^{(t)},\ \bm{h}^{(t-1)}]) \qquad &&\bm{z}^i = \sigma(\bm{W}^i\ [\bm{x}^{(t)},\ \bm{h}^{(t-1)}]) \\
-&\bm{z} = \mathrm{tanh} (\bm{W}\ [\bm{x}^{(t)},\ \bm{h}^{(t-1)}]) \qquad &&\bm{z}^o = \sigma(\bm{W}^o\ [\bm{x}^{(t)},\ \bm{h}^{(t-1)}]) \\
-&\text{forward:} \\
-&\qquad \bm{c}^{(t)} = \bm{z}^{f} \odot \bm{c}^{(t-1)} + \bm{z}^{i} \bm{z} \\
-&\qquad \bm{h}^{(t)} = \bm{z}^{o} \odot \mathrm{tanh} (\bm{c}^{(t)}) \\
-&\qquad \bm{y}^{(t)} = \sigma(\bm{W'}\ \bm{h}^{(t)})
-\end{aligned}
-$
-</div>
-
-<p><cy>LSTM</cy> 的主线是 $c^{(t)}$，它代表长期记忆，设计思路为:
-<ul style="margin-top:-14px;margin-bottom:10px;line-height:30px;">
-<li style="margin:1px 26px;">相邻 <cy>timestep</cy> 之间 $\bm{c}$ 的更新只有加性的线性变换，没有非线性变换，这使得 $\bm{c}$ 的变化缓慢，有利于信息的清晰可辨 (更好地捕获信息)</li>
-<li style="margin:1px 26px;">添加新信息时，类比于人记忆的过程，通过输入门 $\bm{z}^{i}$，只记关键的信息</li>
-<li style="margin:1px 26px;">记忆新信息的同时，通过遗忘门 $\bm{z}^f$ 遗忘一部分过去的信息</li>
-</ul>
-以上三点还有利于减缓梯度消失或梯度爆炸。<br>
-类比于人的记忆过程，预测当前 <cy>timestep</cy> 的输出时，依赖的并不是全部历史信息 $\bm{c}^{(t)}$，而是与当前输出有关的那一部分，于是通过输出门 $\bm{z}^o$ 控制这部分信息的提取，得到短期记忆 $\bm{h}^{(t)}$。</p>
 <p></font></p>
                 
               
@@ -1073,7 +962,7 @@ $
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../ac-loss/" title="2. functions" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../rnn/" title="3. rnn" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
             </div>
@@ -1082,19 +971,19 @@ $
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                2. functions
+                3. rnn
               </div>
             </div>
           </a>
         
         
-          <a href="../cnn/" title="4. cnn" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../Bayes/1/" title="1. basis" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                4. cnn
+                1. basis
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
