@@ -399,7 +399,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../2/1/" title="1.svm" class="md-nav__link">
+    <a href="../../SVM/1/" title="1.svm" class="md-nav__link">
       1.svm
     </a>
   </li>
@@ -1119,7 +1119,7 @@ s_{l}\left(Y_{i}, X, i\right), & k=K_{1}+l ; \quad l=1,2, \cdots, K_{2}
 &emsp;&emsp;$\mathbf{w} = (w_1,w_2,...,w_K)^\mathrm{T}$，&emsp;$\mathbf{F}(Y,X) = (f_1(Y,X), ... ,f_K(Y,X))^\mathrm{T}$
 </div></p>
 <h4 id="3_1">(3). 预测算法</h4>
-<p>问题可表示为 $\displaystyle Y^ * = \argmax_Y P_w(Y|X) = \argmax_Y (\mathbf{w}\cdot \mathbf{F}(Y, X))$，即求非规范化概率的最长路径，因此使用 <msf>Viterbi</msf> 算法。为统一描述，引入两个人工标记: $y_0 = \mathrm{start},\ y_{n+1} = \mathrm{stop}$<br></p>
+<p>问题可表示为 $\displaystyle Y^ * = \argmax_Y P_w(Y|X) = \argmax_Y (\mathbf{w}\cdot \mathbf{F}(Y, X))$，即求非规范化概率的最长路径，因此使用 <msf>Viterbi</msf> 算法。为统一描述，引入两个人工标记: &ensp; $y_0 = \mathrm{start},\ y_{n+1} = \mathrm{stop}$<br></p>
 <p>令 $\delta(i, j) = $ 截至位置 $i$，以第 $j$ 个标记 $y_j$ 结尾的最长路径。则算法流程如下:<br>
 <ul style="margin-top:-14px;margin-bottom:10px;list-style-type:none;">
 <li style="margin:1px 8px;">$(1).$ 初始化: 

@@ -397,7 +397,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../1-ML/2/1/" title="1.svm" class="md-nav__link">
+    <a href="../../../1-ML/SVM/1/" title="1.svm" class="md-nav__link">
       1.svm
     </a>
   </li>
@@ -1100,7 +1100,7 @@ $ 关于 $x,\ y,\ \lambda$ 求导，即转化为对 $F$ 求驻点
 <ul style="margin-top:-10px;margin-bottom:10px;line-height:30px;list-style-type:none;">
 <li style="margin:1px 16px;margin-bottom:10px;">右图为 $f$ 的等值线和 $g$ 的等值线 $g(x,y)=c$ 在 $xOy$ 上的投影。极值点的条件:</li>
 <li style="margin:1px 16px;">$(x_0,y_0)$ 是极值点 $\Longleftrightarrow$ 在 $(x_0,y_0)$ 处，$g(x,y)=c$ 与 $f(x,y)$ 的某个等值线相切。</li>
-<li style="margin:1px 16px;margin-top:10px;">这是因为，相切意味着与梯度垂直，在切点的 $g(x,y)=c$ 限制的邻域内取得极值，也意味着 $f$ 和 $g$ 在该点的梯度平行，即 $\nabla f+\lambda\nabla g=0$</li>
+<li style="margin:1px 16px;margin-top:10px;">以此图为例，假设 $f(x,y)$ 越靠中心越小；若 $(x_0,y_0)$ 是相交点，沿着 $g(x,y)=c$ 走还会有更小的值；如果相切，意味着又绕了回来，恰好是一个极值点。此外，还能知道 $f$ 和 $g$ 在该点的梯度平行，即 $\nabla f+\lambda\nabla g=0$</li>
 </ul>
 如果有多个约束 $g_1(x,y)=c_1,\ g_2(x,y)=c_2,\ ...$，这些约束面的交点形成的曲线记为 $G$，且<br>
 $\displaystyle\nabla G=\sum_i\lambda_i\nabla g_i$，因此 $\nabla f$ 只需要平行于 $\nabla g_i$ 的线性组合

@@ -1076,14 +1076,8 @@
 </div>
 </blockquote>
 
-<p>假设数据集 $D$ 是线性可分的 (<mag>linear seperable</mag>)，进一步推导 <cy>SVM</cy>
-<ul style="margin-top:-15px;margin-bottom:10px;line-height:30px;">
-<li style="margin:1px 26px;">如何衡量被样本分开的程度，即分类器的效果</li>
-<li style="margin:1px 26px;">如何找到这样的超平面</li>
-</ul>
-<div style="height:10px"></div></p>
 <h4 id="2">(2). 基本型</h4>
-<p>若超平面可正确分开正负样本，意味着任意样本 $(\bm{x_i}, y_i)$ 到超平面的距离 $\dfrac{|\bm{w^\mathrm{T}}\bm{x_i}+b|}{||\bm{w}||}&gt;0$，即</p>
+<p>若超平面可正确分开正负样本，意味着对于任意样本 $(\bm{x_i}, y_i)$ :</p>
 <div class="ilmath2">
 $
 \displaystyle
@@ -1092,12 +1086,13 @@ $
 \bm{w^\mathrm{T}}\bm{x_i}+b < 0 & y_i=-1
 \end{cases}
 \enspace \Longleftrightarrow \enspace
-\gamma_i=y_i\frac{\bm{w^\mathrm{T}}\bm{x_i}+b}{||\bm{w}||}>0
+\hat{\gamma_i}=y_i (\bm{w^\mathrm{T}}\bm{x_i}+b) > 0
 $
 <span style="float:right">$(1.1)$</span>
 </div>
 
-<p>满足条件的超平面有无数多个，所有样本中最小的几何间隔 $\gamma_i$ 越大，效果越好</p>
+<p>满足条件的超平面有无数个，用几何间隔评估不同超平面的分类效果：<br>
+&emsp; 设样本中到超平面的集合距离的最小值为 $\gamma_i$，$\gamma_i$ 越大，效果越好</p>
 <div class="ilmath2" style="margin-left:150px">
 $
 \displaystyle
@@ -1105,7 +1100,8 @@ $
 $
 </div>
 
-<p>求解上述最优化问题时，不同超平面对应的最小几何间隔点 $(\bm{x'},y')$ 不同，很难直接求解。但分子 $y'(\bm{w^\mathrm{T}}\bm{x'}+b)&gt;0$ 恒成立，因此可以等倍缩放超平面的参数 $\bm{w}, b$，使 $y'(\bm{w^\mathrm{T}}\bm{x'}+b)=1$ 恒成立<br>
+<p>解上述问题时，不同超平面对应的最小几何间隔点 $(\bm{x_{\text{min}}},y_{\text{min}})$ 不同，很难直接求。<br>
+由于分子 $y_{\text{min}}(\bm{w^\mathrm{T}}\bm{x_{\text{min}}}+b)&gt;0$，可以等倍缩放参数 $\bm{w}, b$，使 $y_{\text{min}}(\bm{w^\mathrm{T}}\bm{x_{\text{min}}}+b)=1$ 恒成立<br>
 此时约束条件转化为</p>
 <div class="ilmath2">
 $
@@ -1120,7 +1116,8 @@ $
 <span style="float:right">$(1.2)$</span>
 </div>
 
-<p><img src="../img/trans.png" height=200 style="margin-left:150px"></p>
+<p>(为什么这样约束就能保证支持向量的函数间隔是 1？)
+<img src="../img/trans.png" height=200 style="margin-left:150px"></p>
 <p>原问题转化为</p>
 <div class="ilmath2">
 $
@@ -1140,8 +1137,22 @@ $
 
 <div style="height:10px"></div>
 
+<blockquote>
+<i><cs>e.g.</cs></i>&emsp;给定正例点 $x_1=(3,3),\ x_2=(4,3)$，负例点 $x_3=(1,1)$，求最大间隔超平面<br>
+&emsp;&emsp;$
+\begin{aligned}\displaystyle
+\min_{\bm{w},b}\quad &\frac{1}{2} (w_1^2+w_2^2) \\
+\mathrm{s.t.} \quad & 3w_1 + 3w_2 + b \geq 1 \\
+& 4w_1 + 3w_2 + b \geq 1 \\
+& -w_1 - w_2 - b \geq 1
+\end{aligned}
+$&emsp; 解得 $\displaystyle w_1 = w_2 = \frac{1}{2},\ b = -2$<br>
+超平面为 $\displaystyle \frac{1}{2} x^{(1)} + \frac{1}{2} x^{(2)} - 2 = 0$，$x_1=(3,3)^{\mathrm{T}},\ x_3=(1,1)^{\mathrm{T}}$ 为支持向量
+</blockquote>
+
 <h4 id="3">(3). 对偶问题</h4>
-<p>该问题的拉格朗日函数: <br>&emsp;&emsp;&emsp;&emsp;
+<p>对于 <cy>SVM</cy>，引入对偶问题可以 ① 简化求解 ② 自然引入核函数<br>
+该问题的拉格朗日函数: <br>&emsp;&emsp;&emsp;&emsp;
 <span style="line-height:80px">$
 \displaystyle
 L(\bm{w},b,\bm{\alpha})=\frac{1}{2}||\bm{w}||^2+\sum_{i=1}^m\alpha_i(1-y_i(\bm{w}^\mathrm{T}\bm{x_i}+b))
@@ -1214,7 +1225,7 @@ $
    <div>
     <b>定理: </b>设 $K:\ \mathcal{X\times X}\to\mathbb{R}$ 是对称函数，$i=1,2,...,m$<br>
     $K(\bm{x},\bm{z})$ 是正定核 $\Longleftrightarrow$ 对 $\forall \bm{x_i}\in\mathcal{X}$，$K(\bm{x},\bm{z})$ 对应的 <mag>Gram</mag> 矩阵 $[K(\bm{x_i},\bm{x_j})]_{m\times m}$ 半正定<br>
-    (任何核函数都饮食定义了一个再生希尔伯特空间)
+    (任何核函数都隐式定义了一个再生希尔伯特空间)
 </div></blockquote>
 
 <p>由于特征空间未必线性可分，核函数往往是 <cy>SVM</cy> 的最大变数，不合适的核函数会导致性能不佳。实际应用中，核函数的有效性需要通过实验验证。</p>
@@ -1306,7 +1317,11 @@ $\displaystyle
 \underset{\bm{w},b}{\min}\enspace \frac{1}{2}||\bm{w}||^2+C\sum_{i=1}^m\ell(y_i(\bm{w^\mathrm{T}}\bm{x_i}+b)-1)
 $
 </div></p>
-<p>这样，就将原问题转化为 <msf>object = loss + regularization</msf> 的形式，</p>
+<p>这样，就将原问题转化为 结构风险 + 经验风险 的形式:
+<ul style="line-height:30px;margin-left:6px;margin-top:-10px;">
+<li style="margin:1px 16px;">结构风险 (<mag>structural risk</mag>): 用于描述模型 $f$ 的某些性质 (例如 间隔最大、复杂度小)，又称正则化项</li>
+<li style="margin:1px 16px;">经验风险 (<mag>empirical risk</mag>): 用于描述模型与训练数据的契合程度</li>
+</ul></p>
 <p></font></p>
                 
               
