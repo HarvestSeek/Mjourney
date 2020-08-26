@@ -692,6 +692,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    (4). 矩阵形式
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -701,6 +708,48 @@
   
 </nav>
     
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1-9" type="checkbox" id="nav-1-9">
+    
+    <label class="md-nav__link" for="nav-1-9">
+      Other
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Other" data-md-level="2">
+      <label class="md-nav__title" for="nav-1-9">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Other
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../OTHER/lstmcrf/" title="1. 1" class="md-nav__link">
+      1. 1
+    </a>
   </li>
 
         
@@ -980,6 +1029,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    (4). 矩阵形式
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1005,15 +1061,16 @@
                 
                 <p><font class="generalcy"></p>
 <h3 id="1">1. 概率无向图</h3>
-<p>又称马尔可夫随机场。同贝叶斯网络一样，出发点在于直接对联合概率建模过于复杂，因此需要做出先验假设，让随机变量之间满足一定的条件独立性。
+<p>又称马尔可夫随机场 (<cy>MRF</cy>)。同贝叶斯网络一样，出发点在于直接对联合概率建模过于复杂，因此需要做出先验假设，让随机变量之间满足一定的条件独立性。
 <ul style="margin-top:-14px;margin-bottom:10px">
-<li style="margin:1px 12px;">贝叶斯网络通过条件概率对变量之间的依赖建模；条件独立 $\Leftrightarrow$ 按有向图箭头分解</li>
-<li style="margin:1px 12px;">马尔可夫随机场不知道变量之间如何相关，直接对联合概率建模；马尔可夫性 $\Leftrightarrow$ 最大团分解</li>
+<li style="margin:1px 12px;">贝叶斯网络通过有向无环图对变量之间的依赖建模，善于表达随机变量间的因果关系；条件独立假设 $\Leftrightarrow$ 按有向图箭头分解 $\prod P(X|\pi(X))$</li>
+<li style="margin:1px 12px;">马尔可夫随机场不知道变量之间如何相关，直接对联合概率建模，善于表达随机变量间的软限制；马尔可夫性假设 $\Leftrightarrow$ 最大团分解</li>
 </ul></p>
 <h4 id="1_1">(1). 马尔可夫性</h4>
 <p><cy>MRF</cy> 有三个马尔可夫性定义:
 <ul style="margin-top:-14px;margin-bottom:10px">
-<li style="margin:1px 16px;">全局: 设结点集 $A、B$ 被 $C$ 分开，则对应的变量集满足: $\mathrm{X} _ {A} \perp \mathrm{X} _ {B} \mid \mathrm{X} _ {C}$</li>
+<li style="margin:1px 16px;">全局: 设结点集 $A、B$ 被 $C$ 分开，则对应的变量集满足: $\mathrm{X} _ {A} \perp \mathrm{X} _ {B} \mid \mathrm{X} _ {C}$<br>
+($A$ 中结点到 $B$ 中结点都必须经过 $C$ 中某个结点)</li>
 <li style="margin:1px 16px;">局部: 变量与其他变量关于邻接变量独立，$\mathrm{X} _ {v} \perp \mathrm{X} _ {V-n(v)-v} \mid \mathrm{X} _ {n(v)}$</li>
 <li style="margin:1px 16px;">成对: 非邻接变量关于其他变量条件独立，$\mathrm{X} _ {u} \perp \mathrm{X} _ {v} \mid \mathrm{X} _ {V-\lbrace u,v\rbrace}$</li>
 </ul></p>
@@ -1057,13 +1114,13 @@ $\displaystyle P(Y_v \mid X,Y_{V-v}) = P(Y_v\mid X,Y_{n(v)})$
 <p>&emsp;&emsp;<img src="../img/lcrf.png" height=100></p>
 <p>其满足 $P(Y\mid X,Y_1,...,Y_{i-1},Y_{i+1},...,Y_n) = P(Y\mid X, Y_{i-1}, Y_{i+1})$，可参数化表示为:
 <div class="ilmath2">
-$\displaystyle P(Y|X) = \frac{1}{Z(X)} \exp \left( \sum_{k,i} \lambda_k t_k (Y_{i-1},Y_i,X,i) + \sum_{l,i}\mu_l s_l (Y_i,X,i) \right)$
+$\displaystyle P(Y|X) = \frac{1}{Z(X)} \exp \left( \sum_{k,i} \lambda_k t_{ki} (Y_{i-1},Y_i,X,i) + \sum_{l,i}\mu_l s_{li} (Y_i,X,i) \right)$
 </div></p>
 <ul style="margin-top:-14px;margin-bottom:10px">
 <li style="margin:1px 8px;">$t_k (Y_{i-1},Y_i,X,i)$:&ensp; 相邻标记的转移特征函数</li>
     <ul style="margin-top:0px;margin-bottom:0px;list-style-type:circle;line-height:30px;">
     <li style="margin:1px 26px;">刻画了相邻标记变量的相关关系，由于对条件概率建模，也需要考虑 $X$ 的影响</li>
-    <li style="margin:1px 26px;">需要考虑位置变量 $i$ 的影响，例如，(代词，动词) 出现在序列头部的可能性大/li>
+    <li style="margin:1px 26px;">需要考虑位置变量 $i$ 的影响，例如，(代词，动词) 出现在序列头部的可能性大</li>
     </ul>
 <li style="margin:1px 8px;">$s_l (Y_i,X,i)$:&ensp; 标记位置 $i$ 上的状态特征函数</li>
     <ul style="margin-top:0px;margin-bottom:0px;list-style-type:circle;line-height:30px;">
@@ -1088,17 +1145,17 @@ $
 </blockquote>
 
 <h4 id="2_1">(2). 简化形式</h4>
-<p>设有 $K_1$ 个转移特征，$K_2$ 个状态特征，记</p>
+<p>设有 $K_1$ 个转移特征，$K_2$ 个状态特征，首先表示所有的特征函数</p>
 <div>
-&emsp;&emsp;$f_{k}(Y_{i-1}, Y_{i}, X, i)=\left \lbrace \begin{array}{ll}
-t_{k}\left(Y_{i-1}, Y_{i}, X, i\right), & k=1,2, \cdots, K_{1} \\
-s_{l}\left(Y_{i}, X, i\right), & k=K_{1}+l ; \quad l=1,2, \cdots, K_{2}
+&emsp;&emsp;$f_{ki}(Y_{i-1}, Y_{i}, X, i)=\left \lbrace \begin{array}{ll}
+t_{ki}\left(Y_{i-1}, Y_{i}, X, i\right), & k=1,2, \cdots, K_{1} \\
+s_{li}\left(Y_{i}, X, i\right), & k=K_{1}+l ; \quad l=1,2, \cdots, K_{2}
 \end{array}\right.$
 </div>
 
-<p>然后对位置 $i$ 求和:</p>
+<p>然后对所有位置求和:</p>
 <div>
-&emsp;&emsp;$\displaystyle f_k(Y,X) = \sum_{i=1}^n f_k(Y_{i-1},Y_i,X,i),\quad k=1,2,...,K$
+&emsp;&emsp;$\displaystyle f_k(Y,X) = \sum_{i=1}^n f_{ki}(Y_{i-1},Y_i,X,i),\quad k=1,2,...,K$
 </div>
 
 <p>并且用 $w_k$ 表示其权值:</p>
@@ -1119,7 +1176,8 @@ s_{l}\left(Y_{i}, X, i\right), & k=K_{1}+l ; \quad l=1,2, \cdots, K_{2}
 &emsp;&emsp;$\mathbf{w} = (w_1,w_2,...,w_K)^\mathrm{T}$，&emsp;$\mathbf{F}(Y,X) = (f_1(Y,X), ... ,f_K(Y,X))^\mathrm{T}$
 </div></p>
 <h4 id="3_1">(3). 预测算法</h4>
-<p>问题可表示为 $\displaystyle Y^ * = \argmax_Y P_w(Y|X) = \argmax_Y (\mathbf{w}\cdot \mathbf{F}(Y, X))$，即求非规范化概率的最长路径，因此使用 <msf>Viterbi</msf> 算法。为统一描述，引入两个人工标记: &ensp; $y_0 = \mathrm{start},\ y_{n+1} = \mathrm{stop}$<br></p>
+<p>问题可表示为 $\displaystyle Y^ * = \argmax_Y P_w(Y|X) = \argmax_Y (\mathbf{w}\cdot \mathbf{F}(Y, X))$，即求非规范化概率的最长路径，因此使用 <msf>Viterbi</msf> 算法。为统一描述，引入两个人工标记: &ensp; $y_0 = \mathrm{start},\ y_{n+1} = \mathrm{stop}$<br>
+记 $\mathbf{F} _ i(Y _ {i-1}, Y _ i, X) =  (f _ {1i} (Y _ {i-1}, Y _ i, X, i), \ ...)^\mathrm{T}$</p>
 <p>令 $\delta(i, j) = $ 截至位置 $i$，以第 $j$ 个标记 $y_j$ 结尾的最长路径。则算法流程如下:<br>
 <ul style="margin-top:-14px;margin-bottom:10px;list-style-type:none;">
 <li style="margin:1px 8px;">$(1).$ 初始化: 
@@ -1132,6 +1190,47 @@ $
 <li style="margin:1px 8px;">$(3).$ 终止: 
 <div class="ilmath2"> $\displaystyle \max _ {Y}(\mathbf{w} \cdot \mathbf{F}(Y,X)) = \max _ {1\leq j\leq m} \delta(n, j)$</div></li>
 </ul></p>
+<h4 id="4">(4). 矩阵形式</h4>
+<p>假设标记变量 $Y$ 的取值范围 $\lbrace 1,2,...,m \rbrace$，极大团 $\lbrace Y_i,\ Y_{i+1} \rbrace$ 的势为:</p>
+<div>
+&emsp;&emsp;$\displaystyle M_i(Y_i=p, Y_{i+1}=q \mid X) = \exp\left(\sum_{k=1}^K w_k f_k(Y_i=p, Y_{i+1}=q, X, i) \right)$
+</div>
+
+<p>表示成矩阵形式:</p>
+<div>
+&emsp;&emsp;$\displaystyle 
+\mathbf{M}_{i}(X)=\left[\begin{array}{cccc}
+M_{i}\left(1, 1 \mid X\right) & M_{i}\left(1, 2 \mid X\right) & \cdots & M_{i}\left(1, m \mid X\right) \\
+M_{i}\left(2, 1 \mid X\right) & M_{i}\left(2, 2 \mid X\right) & \cdots & M_{i}\left(2, m \mid X\right) \\
+\vdots & \vdots & \ddots & \vdots \\
+M_{i}\left(m, 1 \mid X\right) & M_{i}\left(m, 2 \mid X\right) & \cdots & M_{i}\left(m, m \mid \mathbf{X}\right)
+\end{array}\right]_{m \times m}
+$
+</div>
+
+<p>特别地，</p>
+<div>
+&emsp;&emsp;$\displaystyle 
+\mathbf{M}_{0}(X)=\left[\begin{array}{cccc}
+M_{0}\left(\mathrm{start}, 1 \mid X\right) & \cdots & M_{0}\left(\mathrm{start}, m \mid X\right) \\
+0 & \cdots & 0 \\
+\vdots & \ddots & \vdots \\
+0 & \cdots & 0
+\end{array}\right]
+$
+</div>
+
+<p><br></p>
+<div>
+&emsp;&emsp;$\displaystyle 
+\mathbf{M}_{n}(X)=\left[\begin{array}{cccc}
+M_{n}\left(1, \mathrm{stop} \mid X\right) & \cdots & 0 & 0 \\
+\vdots & \ddots & \vdots & \vdots \\
+M_{n}\left(m, \mathrm{stop} \mid X\right) & \cdots & 0 & 0
+\end{array}\right]
+$
+</div>
+
 <p></font></p>
                 
               
@@ -1166,13 +1265,13 @@ $
           </a>
         
         
-          <a href="../../../2-CA/1/1/" title="1. partial derivatives" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../OTHER/lstmcrf/" title="1. 1" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                1. partial derivatives
+                1. 1
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
